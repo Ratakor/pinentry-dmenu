@@ -1,5 +1,8 @@
 # pinentry-dmenu
 
+MAN PAGE IS NOT UP TO DATE: THERE IS NO CONFIGURATION FILE ANYMORE AND THERE IS
+XRESOURCE SUPPORT NOW
+
 pinentry-dmenu is a pinentry program based on dmenu.
 
 This program is a fork from https://gitgud.io/zavok/spine.git
