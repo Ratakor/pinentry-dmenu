@@ -26,7 +26,6 @@
 #include "pinentry/pinentry.h"
 #include "pinentry/memory.h"
 
-#define CONFIG_DIR "/.gnupg"
 #define INTERSECT(x, y, w, h, r) \
 		(MAX(0, MIN((x)+(w),(r).x_org+(r).width) - MAX((x),(r).x_org)) \
 		 && MAX(0, MIN((y)+(h),(r).y_org+(r).height) - MAX((y),(r).y_org)))
@@ -47,8 +46,7 @@ static int lrpad;
 static size_t cursor;
 static int screen;
 
-static int bottom = 0,
-		   center = 0;
+static int bottom = 0, center = 0;
 
 static char* pin;
 static int pin_len;
@@ -848,44 +846,16 @@ pinentry_cmd_handler_t pinentry_cmd_handler = cmdhandler;
 
 int
 main(int argc, char *argv[]) {
-	int i;
-	struct passwd *pw;
-	char path[PATH_MAX];
-	char *sudo_uid = getenv("SUDO_UID");
-	char *home = getenv("HOME");
-	char *gnupghome = getenv("GNUPGHOME");
-
 	XrmInitialize();
 	load_xresources();
 
-	if (gnupghome) {
-		i = strlen(gnupghome);
-		strcpy(path, gnupghome);
-	} else {
-		/* Get the home dir even if the user used sudo or logged in as root */
-		if (sudo_uid) {
-			i = atoi(sudo_uid);
-			pw = getpwuid(i);
-			home = pw->pw_dir;
-		}
-
-		i = strlen(home);
-		strcpy(path, home);
-		strcpy(&path[i], CONFIG_DIR);
-		i += strlen(CONFIG_DIR);
-	}
-
-	/* endpwent(); */
-
-	if (0 == strcmp(position, "center")) {
+	if (strcmp(position, "center") == 0) {
 		center = 1;
 		bottom = 0;
-	}
-	if (0 == strcmp(position, "bottom")) {
+	} else if (strcmp(position, "bottom") == 0) {
 		center = 0;
 		bottom = 1;
 	}
-
 	pinentry_init("pinentry-dmenu");
 	pinentry_parse_opts(argc, argv);
 
