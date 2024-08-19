@@ -4,8 +4,8 @@
 static unsigned int mon = -1;
 static unsigned int centerwidth = 850;
 static unsigned int embedded = 0;
-static unsigned int lineheight = 25;
-static unsigned int borderwidth = 1;
+static unsigned int lineheight = 24;
+static unsigned int borderwidth = 2;
 static unsigned int minpwlen = 32;
 static unsigned int alphas[SchemeLast][2] = {
 	/* values between 0 (transparent) and 255 (opaque) */
@@ -24,10 +24,10 @@ static const char *fonts[] = {
 };
 static const char *prompt   = NULL;
 static const char *asterisk = "*";
-static char normfgcolor[]   = "#f8f8f2";
-static char normbgcolor[]   = "#282a36";
-static char selfgcolor[]    = "#f8f8f2";
-static char selbgcolor[]    = "#6272a4";
+static char normfgcolor[]   = "#ebdbb2";
+static char normbgcolor[]   = "#1d2021";
+static char selfgcolor[]    = "#ebdbb2";
+static char selbgcolor[]    = "#458588";
 static char *colors[SchemeLast][2] = {
 	/*                foreground, background */
 	[SchemePrompt] = { normfgcolor, normbgcolor },
