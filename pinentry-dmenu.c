@@ -24,7 +24,7 @@
 #include "util.h"
 
 #include "pinentry/pinentry.h"
-#include "pinentry/memory.h"
+#include "pinentry/secmem.h"
 
 #define INTERSECT(x, y, w, h, r) \
 		(MAX(0, MIN((x)+(w),(r).x_org+(r).width) - MAX((x),(r).x_org)) \
